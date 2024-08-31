@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.27)
+project(regex)
+
+set(CMAKE_CXX_STANDARD 23)
+
+add_subdirectory(regex_evaluater)
+add_subdirectory(ast)
+add_subdirectory(ast_builder)
+add_subdirectory(state)
+add_subdirectory(nfa_simulator)
+add_subdirectory(dfa)
+add_subdirectory(dfa_builder)
+add_subdirectory(group_manager)
+add_subdirectory(regex_engine)
+add_subdirectory(dfa_to_regex)
+add_subdirectory(dfa_minimizer)
+add_subdirectory(match_results)
+add_subdirectory(trie)
+
+add_executable(main main.cpp tests/tests.cpp)
+add_compile_options(-g -fsanitize=address)
+add_link_options(-fsanitize=address)
+target_link_libraries(main gtest gmock pthread regex_engine match_results)
